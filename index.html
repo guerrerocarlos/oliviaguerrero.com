@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+  <title>👶 I'm Olivia!</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display-1">¡Hola! ¿como estás? ¡bien!</h1>
+
+    <dl class="row">
+      <dt class="col-sm-12">
+        <h2>Tengo apenas
+          <mark><span id="years">2</span> año<span id="plural-years"></span></mark> <mark><span id="months">2</span>
+            mes<span id="plural-months"></span></mark> y <mark><span id="days">2</span> dia<span
+              id="plural-days"></span></mark> cumplidos 👶<br>
+          (Cumplo <mark><span id="nextYears">2</span> año<span id="plural-nextYears"></span></mark> en<mark><mark><span
+                id="birthday">2</span> dias</mark></mark> 🎂)
+        </h2>
+        <br>
+        <h5>En unos años habrá más información por aqui 😎</h5>
+      </dt>
+    </dl>
+
+  </div>
+</body>
+<script>
+  function setValue(field, value, plural) {
+    const item = document.getElementById(field)
+    item.innerHTML = value
+
+    if (value > 1) {
+      const item = document.getElementById("plural-" + field)
+      item.innerHTML = item.innerHTML + (plural ?? "s")
+    }
+
+  }
+
+  function monthDiff(d1, d2) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+  }
+
+  let nacimiento = new Date("Wed Dec 16 2020 20:58:00 GMT+0100")
+
+  let hoy = new Date()
+
+  let cumple = new Date("Dec 16 " + (hoy.getYear() + 1900))
+
+  setValue("years", hoy.getYear() - nacimiento.getYear())
+  setValue("nextYears", hoy.getYear() - nacimiento.getYear() + 1)
+  setValue("months", monthDiff(nacimiento, hoy), "es")
+  setValue("days", hoy.getDate() + 15)
+
+  let cumploEn = (cumple.getTime() - hoy.getTime()) / (24 * 60 * 60 * 1000)
+  setValue("birthday", Math.floor(cumploEn))
+
+
+</script>
+
+</html>
