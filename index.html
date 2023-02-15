@@ -32,7 +32,6 @@
         <h5>En unos años habrá más información por aqui 😎</h5>
       </dt>
     </dl>
-    <h3 class="display-1">¡Dieda! ¡Babu!</h3>
   </div>
 </body>
 <script>
@@ -48,11 +47,11 @@
   }
 
   function monthDiff(d1, d2) {
-    var months;
-    months = (d2.getFullYear() - d1.getFullYear()) * 12;
-    months -= d1.getMonth();
-    months += d2.getMonth();
-    return months <= 0 ? 0 : months;
+    var months = 0;
+    // months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months += d2.getFullYear() * 12 + d2.getMonth();
+    months -= d1.getFullYear() * 12 + d1.getMonth();
+    return months <= 0 ? 0 : months % 12;
   }
 
   let nacimiento = new Date("Wed Dec 16 2020 20:58:00 GMT+0100")
